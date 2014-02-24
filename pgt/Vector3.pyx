@@ -13,6 +13,30 @@ cdef class Vector3:
     def random(cls):
         return cls(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
     
+    @classmethod
+    def unit_z(cls):
+        return cls(0.0, 0.0, 1.0)
+    
+    @classmethod
+    def unit_x(cls):
+        return cls(1.0, 0.0, 0.0)
+    
+    @classmethod
+    def unit_y(cls):
+        return cls(0.0, 1.0, 0.0)
+    
+    @classmethod
+    def neg_unit_x(cls):
+        return cls(-1.0, 0.0, 0.0)
+    
+    @classmethod
+    def neg_unit_y(cls):
+        return cls(0.0, -1.0, 0.0)
+    
+    @classmethod
+    def neg_unit_z(cls):
+        return cls(0.0, 0.0, -1.0)
+    
     def cinit(self, double x, double y, double z):
         self.x = x
         self.y = y
