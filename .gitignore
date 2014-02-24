@@ -1,0 +1,9 @@
+venv
+*.c
+*.pyd
+*.so
+*.dll
+build
+dist
+*.project
+*.pydevproject
