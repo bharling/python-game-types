@@ -31,5 +31,7 @@ cdef class Matrix3:
         mat.k = self.k
         return mat
     
+    __copy__ = copy
+    
     
     
