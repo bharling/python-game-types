@@ -40,12 +40,7 @@ cdef class Vector3:
     def neg_unit_z(cls):
         return cls(0.0, 0.0, -1.0)
     
-    def cinit(self, double x, double y, double z):
-        self.x = x
-        self.y = y
-        self.z = z
-        
-    def __init__(self, x, y, z):
+    def __cinit__(self, double x, double y, double z):
         self.x = x
         self.y = y
         self.z = z
