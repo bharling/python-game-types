@@ -2,7 +2,7 @@ from pgt import *
 import math
 import unittest
 
-class TestVector3Functions(unittest.TestCase):
+class TestVector3(unittest.TestCase):
     
     def test_length(self):
         v = Vector3.unit_x().mulScalar(100.0)
@@ -41,6 +41,29 @@ class TestVector3Functions(unittest.TestCase):
         lerped = v1.lerp(v2, 0.5)
         self.assertEqual(lerped.x, 50.0, 'interpolated vector should have x==50')
         
+class TestAAB(unittest.TestCase):
+    def test_contains_point(self):
+        point = Vector3(100.0,100.0,100.0)
+        box = AAB( Vector3.zero(), Vector3(300.0, 300.0, 300.0))
+        self.assertTrue(box.contains(point), "Box should contain point")
+        
+    def test_update_center(self):
+        box = AAB( Vector3.zero(), Vector3(100.0, 100.0, 100.0) )
+        newcenter = Vector3(50.0, 0.0, 0.0)
+        box.setCenter(newcenter)
+    
+    def test_extend_alters_dimensions(self):
+        box = AAB( Vector3.zero(), Vector3(100.0, 100.0, 100.0 ) )
+        point = Vector3(-200.0, 0.0, 0.0)
+        box.extend(point)
+        self.assertEqual(box.width, 250.0, "width not updated by extend")
+        
+    def test_extend_changes_center(self):
+        box = AAB( Vector3.zero(), Vector3(100.0, 100.0, 100.0 ) )
+        point = Vector3(0.0, 250.0, 0.0)
+        box.extend(point)
+        self.assertEqual(box.center.y, 100.0, "center not updated by extend")
+             
 if __name__=='__main__':
     unittest.main()
 

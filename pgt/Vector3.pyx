@@ -13,6 +13,10 @@ cdef class Vector3:
         return cls(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
     
     @classmethod
+    def zero(cls):
+        return cls(0.0, 0.0, 0.0)
+    
+    @classmethod
     def unit_z(cls):
         return cls(0.0, 0.0, 1.0)
     
