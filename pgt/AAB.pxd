@@ -10,4 +10,10 @@ cdef class AAB:
 	cpdef int overlaps(self, AAB other )
 	cdef updateBounds(self)
 	cdef updateCenter(self)
+	cpdef int sweepCollision(self, Vector3 myPreviousPosition, AAB other, Vector3 otherPreviousPosition )
+	cpdef double maxVal ( self, int i )
+	cpdef double minVal ( self, int i )
+	cdef inline Vector3 GetIntersection( self, double fDst1, double fDst2, Vector3 P1, Vector3 P2)
+	cdef inline int InBox( self, Vector3 Hit, Vector3 B1, Vector3 B2, int Axis)
+	cpdef Vector3 intersectLine(self, Vector3 L1, Vector3 L2)
         

@@ -17,6 +17,10 @@ cdef class Vector3:
         return cls(0.0, 0.0, 0.0)
     
     @classmethod
+    def ones(cls):
+        return cls(1.0, 1.0, 1.0)
+    
+    @classmethod
     def unit_z(cls):
         return cls(0.0, 0.0, 1.0)
     
@@ -51,6 +55,11 @@ cdef class Vector3:
             
     def __len__(self):
         return 3
+    
+    def __nonzero__(self):
+        if self.x != 0.0 or self.y != 0.0 or self.z != 0.0 : 
+            return 1
+        return 0
     
     def __getitem__(self, key):
         return (self.x, self.y, self.z)[key]
