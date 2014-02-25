@@ -1,7 +1,6 @@
 import random
 from libc.math cimport sqrt, acos
 from Quaternion cimport Quaternion
-from copy import copy
 
 # portions of this code adapted from
 # https://code.google.com/p/pyeuclid
@@ -80,7 +79,9 @@ cdef class Vector3:
     __radd__ = __add__
     
     def __sub__(self, Vector3 other):
-        return Vector3( self.x - other.x, self.y - other.y, self.z - other.z )
+        cdef Vector3 result
+        result = Vector3( self.x - other.x, self.y - other.y, self.z - other.z )
+        return result
     
     def __isub__(self, Vector3 other):
         self.x -= other.x
