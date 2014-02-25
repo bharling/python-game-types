@@ -52,6 +52,11 @@ cdef class AAB:
         self.center = self.minCorner.lerp(self.maxCorner, 0.5)
             
     cpdef extend (self, Vector3 point):
+        """
+        aab.extend(point)
+        Extend this box so that it completely contains point
+        @param point: a Vector3 position to emcompass 
+        """
         cdef double x, y, z, minX, minY, minZ, maxX, maxY, maxZ
         x, y, z = point
         minX, minY, minZ = self.minCorner
@@ -65,6 +70,11 @@ cdef class AAB:
         self.updateCenter()
         
     cpdef int contains( self, Vector3 point ):
+        """
+        aab.contains(point)
+        return 1 if the point is inside this box
+        @param point: Vector3 to test
+        """
         if point.x >= self.minCorner.x and \
             point.y >= self.minCorner.y and \
             point.z >= self.minCorner.z and \
@@ -74,10 +84,19 @@ cdef class AAB:
         return 0
     
     cpdef setCenter( self, Vector3 newCenter ):
+        """
+        aab.setCenter(newCenter)
+        Update the center point of this box and recalculate its bounds
+        """
         self.center = newCenter
         self.updateBounds()
     
     cpdef int overlaps( self, AAB other ):
+        """
+        aab.overlaps(other)
+        Test if this box overlaps another
+        @param other: another AAB to test against
+        """
         cdef Vector3 offset
         cdef double tX, tY, tZ
         tX = (self.extents.x + other.extents.x) / 2.0
