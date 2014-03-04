@@ -17,3 +17,4 @@ cdef class Vector3:
     cpdef double angleTo(self, Vector3 other)
     cpdef Vector3 project(self, Vector3 other)
     cpdef double distanceTo(self, Vector3 other)
+    cpdef Vector3 cross(self, Vector3 other )

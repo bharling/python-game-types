@@ -196,13 +196,6 @@ cdef class Vector3:
     cpdef Vector3 lerp(self, Vector3 final, double percent):
         return self + ((final-self).mulScalar(percent))
     
-    cpdef Vector3 cross(self, Vector3 other):
-        cdef Vector3 result
-        result = Vector3( self.y * other.z - self.z * other.y,
-                          -self.x * other.z + self.z * other.x,
-                          self.x * other.y - self.y * other.x )
-        return result
-    
     cpdef Vector3 reflect (self, Vector3 normal):
         cdef double d
         cdef Vector3 result
@@ -216,5 +209,15 @@ cdef class Vector3:
         return acos(self.dot(other) / (self.length()*other.length()))
     
     cpdef Vector3 project( self, Vector3 other ):
+        cdef Vector3 n
         n = other.normalizedCopy()
         return self.dot(n)*n
+    
+    cpdef Vector3 cross (self, Vector3 other ):
+        cdef Vector3 ret
+        ret = Vector3( self.y * other.z - self.z * other.y,
+                       self.z * other.x - self.x * other.z,
+                       self.x * other.y - self.y * other.x )
+        return ret
+    
+    

@@ -197,6 +197,7 @@ cdef class AAB:
         if (L1.x > B1.x and L1.x < B2.x and L1.y > B1.y and L1.y < B2.y and L1.z > B1.z and L1.z < B2.z):
             Hit = L1
             return Hit
+        return Hit
         
 #         if ( (GetIntersection( L1.x-B1.x, L2.x-B1.x, L1, L2, Hit) && InBox( Hit, B1, B2, 1 ))
 #           || (GetIntersection( L1.y-B1.y, L2.y-B1.y, L1, L2, Hit) && InBox( Hit, B1, B2, 2 )) 
